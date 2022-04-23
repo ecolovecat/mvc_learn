@@ -27,8 +27,9 @@ switch ($controller) {
     <title>Index</title>
 </head>
 <body>
-    <a href="index.php?controller=user&action=add">Thêm thành viên</a>
+
     <a href="index.php?controller=user&action=list">Danh sách thành viên</a>
+
 </body>
 </html>
 

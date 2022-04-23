@@ -3,6 +3,8 @@
     $db = new CRUD();
     $results = $db->retrieve();
 
+
+
 ?>
 
 <!doctype html>
@@ -15,6 +17,12 @@
     <title>List</title>
 </head>
 <body>
+
+    <form action="view/member/search.php" method="get">
+        <input type="hidden" controller="user" name="action" value="search">
+        <input type="text" name="key">
+        <button type="submit" name="search">Search</button>
+    </form>
     <table border="1px">
         <thead>
             <tr>

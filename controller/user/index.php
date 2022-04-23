@@ -29,11 +29,16 @@ switch ($action) {
         require_once ('view/member/edit_user.php');
         if (isset($_POST['edit_user'])) {
             $db->edit($_GET['id']);
+            header("Location:index.php?controller=user");
         }
+
         break;
 
     case "delete":
         require_once ('view/member/delete_user.php');
+        $db = new CRUD();
+        $db->delete($_GET['id']);
+
         break;
     default:
         require_once ('view/member/list.php');

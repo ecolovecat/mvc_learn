@@ -27,6 +27,15 @@ class CRUD {
         return $this->db->resultAll();
     }
 
+    public function search($key) {
+        $sql =  "select * from info where name like :key";
+        $this->db->query($sql);
+        $this->db->bind(":key", "%".$key."%");
+
+        return $this->db->resultAll();
+
+    }
+
     public function edit($id) {
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         $name = $_POST['name'];
@@ -41,6 +50,15 @@ class CRUD {
         $this->db->bind(":address", $address);
         $this->db->bind(":id", $id);
         return $this->db->resultAll();
+    }
+
+    public function delete($id) {
+        $sql = "delete from info where id = :id";
+        $this->db->query($sql);
+
+        $this->db->bind(":id", $id);
+
+        return $this->db->execute();
     }
 
     public function retrieve() {
