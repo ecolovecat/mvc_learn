@@ -1,5 +1,5 @@
 <?php
-
+require_once ('model/CRUD.php');
 
 
 if (isset($_GET['action'])) {
@@ -11,7 +11,7 @@ if (isset($_GET['action'])) {
 switch ($action) {
     case "add":
         require_once ('view/member/add_user.php');
-        require_once ('model/CRUD.php');
+
 
         $db = new CRUD();
 
@@ -24,7 +24,12 @@ switch ($action) {
         break;
 
     case "edit":
+        $db = new CRUD();
+        $resul = $db->retrieve_edit($_GET['id']);
         require_once ('view/member/edit_user.php');
+        if (isset($_POST['edit_user'])) {
+            $db->edit($_GET['id']);
+        }
         break;
 
     case "delete":
@@ -32,5 +37,7 @@ switch ($action) {
         break;
     default:
         require_once ('view/member/list.php');
+
+
         break;
 }

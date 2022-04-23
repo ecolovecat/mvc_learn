@@ -1,3 +1,10 @@
+<?php
+    require_once ('model/CRUD.php');
+    $db = new CRUD();
+    $results = $db->retrieve();
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,16 +22,30 @@
                 <th>Name</th>
                 <th>Year of birth</th>
                 <th>Address</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
 
         <tbody>
-            <tr>
-                <th>1</th>
-                <th>Duy</th>
-                <th>2001</th>
-                <th>Bac Ninh</th>
-            </tr>
+
+        <?php
+            $stt = 1;
+            foreach ($results as $result) {?>
+                <tr>
+                    <th><?php echo $stt ?></th>
+                    <th><?php echo $result['name'] ?></th>
+                    <th><?php echo $result['year'] ?></th>
+                    <th><?php echo $result['address'] ?></th>
+                    <th><a href='index.php?controller=user&action=edit&id=<?php echo $result['id']?>'>Edit</a></th>
+                    <th><a href='index.php?controller=user&action=delete&id=<?php echo $result['id']?>'>Delete</a></th>
+
+                </tr>
+        <?php
+        $stt++;
+                }
+        ?>
+
         </tbody>
     </table>
 </body>
